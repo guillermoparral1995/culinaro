@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Guillermo-Parral-s-workspace-7l05ue.eu-west-1.xata.sh/db/culinaro",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
