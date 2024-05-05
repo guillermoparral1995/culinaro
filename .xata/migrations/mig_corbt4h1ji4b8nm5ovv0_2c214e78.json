@@ -1,0 +1,16 @@
+{
+  "id": "mig_corbt4h1ji4b8nm5ovv0",
+  "parentID": "mig_corbstp1ji4b8nm5ovu0",
+  "checksum": "1:2c214e786875552bd060de887365a719a71ec2bc369c173825cad8cd4a5dbf80",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "description",
+          "type": "text"
+        },
+        "table": "recipes"
+      }
+    }
+  ]
+}

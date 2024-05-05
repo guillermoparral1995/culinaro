@@ -1,0 +1,16 @@
+{
+  "id": "mig_corbtj11ji4b8nm5p000",
+  "parentID": "mig_corbtb7r38qmg1s8epng",
+  "checksum": "1:83e8a9ba5c47ccb9af911cfb83c5d1987ee4a8babf58ec9295256233efc2e34f",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "pictures",
+          "type": "file[]"
+        },
+        "table": "recipes"
+      }
+    }
+  ]
+}

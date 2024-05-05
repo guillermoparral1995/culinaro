@@ -1,0 +1,19 @@
+{
+  "id": "mig_corbtsfr38qmg1s8epp0",
+  "parentID": "mig_corbtj11ji4b8nm5p000",
+  "checksum": "1:177a11d83a861f964b7ad80e0034ab8f0cc33f220bcce2e029f852d06875c59f",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "recipes",
+          "type": "link",
+          "link": {
+            "table": "recipes"
+          }
+        },
+        "table": "users"
+      }
+    }
+  ]
+}

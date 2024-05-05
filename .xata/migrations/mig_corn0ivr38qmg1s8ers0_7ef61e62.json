@@ -1,0 +1,16 @@
+{
+  "id": "mig_corn0ivr38qmg1s8ers0",
+  "parentID": "mig_corn0bp1ji4b8nm5p2cg",
+  "checksum": "1:7ef61e6270b2caab8f5a31bff890cebe9100ddbf3f5b9334d5f0ea9347478785",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "image",
+          "type": "file"
+        },
+        "table": "users"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "mig_corbu491ji4b8nm5p040",
+  "parentID": "mig_corbtsfr38qmg1s8epp0",
+  "checksum": "1:4bffd8d853835239cdeed9eaabc49feb3166726e5d46fe80915aa56605639987",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "recipes",
+        "table": "users"
+      }
+    }
+  ]
+}

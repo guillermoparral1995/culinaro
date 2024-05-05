@@ -1,0 +1,26 @@
+---
+import MainLayout from '../../layouts/main.astro';
+import { xata } from '../../db/client';
+
+const userInfo = await xata.db.users.select(['*']).filter({ name: 'Guillermo Parral' })
+console.log(userInfo)
+---
+
+<MainLayout title="Culinaro - Your profile">
+	<aside>
+        <ul class="space-y-10">
+            <li id="info-tab">Your info</li>
+            <li id="recipes-tab">Your recipes</li>
+            <li id="friends-tab">Your friends</li>
+        </ul>
+    </aside>
+    <section>
+        <h1>Your info</h1>
+        <p>Here you can see your info, your recipes and your friends.</p>
+    </section>
+    <script>
+        document.querySelector('#info-tab')?.addEventListener('click', () => {
+            alert('bla!')
+        })
+    </script>
+</MainLayout>

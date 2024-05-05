@@ -1,0 +1,12 @@
+{
+  "id": "mig_corbsr11ji4b8nm5ovt0",
+  "parentID": "mig_corbsovr38qmg1s8epmg",
+  "checksum": "1:f75f767bfcb0b50801a554a1c689834e01b3022d124581a323b547a254c9edc6",
+  "operations": [
+    {
+      "addTable": {
+        "table": "recipes"
+      }
+    }
+  ]
+}

@@ -1,9 +1,11 @@
 ---
 const { title } = Astro.props;
 import { getSession } from 'auth-astro/server';
+import { getUser } from '../db/user';
 
 const session = await getSession(Astro.request);
-console.log(session)
+const user = await getUser(session);
+
 ---
 
 <html lang="en">
@@ -50,8 +52,7 @@ console.log(session)
 				<a class="text-lg" href="/">Culinaro</a>
 			</li>
 			<li class="flex mx-4 space-x-4">
-				{ session ? <img class="size-12 rounded-full" src={session?.user?.image}/> : <button class="border-white border-2 p-2 rounded-md" id="login">Sign in</button> }
-				{ !session && <button class="border-white border-2 p-2 rounded-md">Sign up</button> }
+				{ session ? <a href="../profile/"><img class="size-12 rounded-full" src={user?.image?.url || session?.user?.image}/></a> : <button class="border-white border-2 p-2 rounded-md" id="login">Sign in</button> }
 			</li>
 	</nav>
 	<main class="p-8">

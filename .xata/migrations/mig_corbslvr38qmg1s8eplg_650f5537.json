@@ -1,0 +1,17 @@
+{
+  "id": "mig_corbslvr38qmg1s8eplg",
+  "parentID": "mig_corbsh11ji4b8nm5ovrg",
+  "checksum": "1:650f5537885abd96f6983d20996689673146a25dd6fc9bde678f9c41193ad0b6",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "username",
+          "type": "string",
+          "unique": true
+        },
+        "table": "users"
+      }
+    }
+  ]
+}
