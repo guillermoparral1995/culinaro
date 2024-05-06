@@ -77,6 +77,7 @@ const tables = [
       { name: "name", type: "string" },
       { name: "email", type: "string", unique: true },
       { name: "image", type: "file" },
+      { name: "bio", type: "text" },
     ],
     revLinks: [{ column: "user", table: "recipes" }],
   },

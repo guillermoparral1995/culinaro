@@ -1,0 +1,16 @@
+{
+  "id": "mig_cortaoklpvh5kbsr0am0",
+  "parentID": "mig_corn0ivr38qmg1s8ers0",
+  "checksum": "1:f260eb794a226cdf61a26ec12848670a2abae2996df70d4686b5f6877a9e31fd",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "bio",
+          "type": "text"
+        },
+        "table": "users"
+      }
+    }
+  ]
+}

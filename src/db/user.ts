@@ -7,7 +7,7 @@ import type { Session } from '@auth/core/types'
 export const getUser = async (session: Session | null) => {
     if (!session) return null
     if (!session.user?.email) return null
-    let user = await xata.db.users.select(['email', 'username', 'name', 'image']).filter({ email: session.user.email }).getFirst()
+    let user = await xata.db.users.select(['email', 'username', 'name', 'image', 'bio']).filter({ email: session.user.email }).getFirst()
     if (!user) {
         // if session exists but user does not, means it's first login, we need to add them to db and sign them up
         user = await createUser(session)

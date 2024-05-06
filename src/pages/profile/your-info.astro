@@ -20,5 +20,12 @@ const user = await getUser(session);
             <div>Username</div>
             <div class="font-bold">{user?.username}</div>
         </li>
+        { user?.bio && <li class="text-left border-2 rounded-md p-2">
+            <div>Bio</div>
+            <div>{user?.bio}</div>
+        </li> }
+        <li>
+            <a href="/profile/edit"><button class="border-2 rounded-md p-2">Edit &#9998</button></a>
+        </li>
     </ul>
 </ProfileLayout>

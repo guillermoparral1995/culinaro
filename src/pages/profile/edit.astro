@@ -1,0 +1,35 @@
+---
+import ProfileLayout from '../../layouts/profile.astro';
+import { getSession } from 'auth-astro/server';
+import { getUser } from '../../db/user';
+
+const session = await getSession(Astro.request);
+const user = await getUser(session);
+---
+
+<ProfileLayout sectionTitle="Your info - Edit">
+    <form>
+        <ul class="space-y-8 text-center">
+            <li class="flex justify-center relative">
+                <img src={user?.image?.url}>
+                <div class="absolute bottom-0 bg-black w-full opacity-80">Change &#9998</div>
+            </li>
+            <li class="flex justify-between border-2 rounded-md p-2 bg-gray-400">
+                <div>Email</div>
+                <div class="font-bold">{user?.email}</div>
+            </li>
+            <li class="flex justify-between border-2 rounded-md p-2 cursor-pointer">
+                <label for="username">Username</label>
+                <input id="username" class="text-black rounded-md" placeholder={user?.username}/>
+            </li>
+            <li class="text-left border-2 rounded-md p-2 space-y-4 cursor-pointer">
+                <div>Bio</div>
+                <textarea id="bio" class="text-black rounded-md w-full h-16" placeholder={user?.bio ?? ''}/>
+            </li>
+            <li>
+                <input type="submit" class="rounded-md border-2 cursor-pointer p-2" value="Save changes" />
+            </li>
+        </ul>
+    </form>
+
+</ProfileLayout>
