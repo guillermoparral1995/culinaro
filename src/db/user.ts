@@ -2,12 +2,13 @@ import { xata } from './client'
 import axios from 'axios'
 
 import type { Session } from '@auth/core/types'
+import type { UsersRecord } from '../xata'
 
 
 export const getUser = async (session: Session | null) => {
     if (!session) return null
     if (!session.user?.email) return null
-    let user = await xata.db.users.select(['email', 'username', 'name', 'image', 'bio']).filter({ email: session.user.email }).getFirst()
+    let user = await xata.db.users.select(['id', 'email', 'username', 'name', 'image', 'bio']).filter({ email: session.user.email }).getFirst()
     if (!user) {
         // if session exists but user does not, means it's first login, we need to add them to db and sign them up
         user = await createUser(session)
@@ -36,6 +37,14 @@ export const createUser = async (session: Session) => {
             mediaType: 'image/png',
             base64Content: base64Img
         },
+    })
+    return user
+}
+
+export const updateUser = async (id: string, user: Partial<UsersRecord>) => {
+    const updatedUser = await xata.db.users.update(id, {
+        username: user?.username,
+
     })
     return user
 }

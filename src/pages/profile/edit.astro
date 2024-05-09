@@ -1,7 +1,7 @@
 ---
 import ProfileLayout from '../../layouts/profile.astro';
 import { getSession } from 'auth-astro/server';
-import { getUser } from '../../db/user';
+import { getUser, updateUser } from '../../db/user';
 
 const session = await getSession(Astro.request);
 const user = await getUser(session);
@@ -23,13 +23,27 @@ const user = await getUser(session);
                 <input id="username" class="text-black rounded-md" placeholder={user?.username}/>
             </li>
             <li class="text-left border-2 rounded-md p-2 space-y-4 cursor-pointer">
-                <div>Bio</div>
+                <div class="mb-4">Bio</div>
                 <textarea id="bio" class="text-black rounded-md w-full h-16" placeholder={user?.bio ?? ''}/>
             </li>
             <li>
-                <input type="submit" class="rounded-md border-2 cursor-pointer p-2" value="Save changes" />
+                <input type="submit" class="rounded-md border-2 cursor-pointer p-2" value="Save changes"/>
             </li>
         </ul>
     </form>
+    <script>
+        document.querySelector('form')!.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            await fetch('/api/user/', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: 'bla', bio: 'bla' })
+            });
+            window.location.href = '/profile/your-info';
+        });
+    </script>
 
 </ProfileLayout>

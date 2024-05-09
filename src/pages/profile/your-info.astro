@@ -21,7 +21,7 @@ const user = await getUser(session);
             <div class="font-bold">{user?.username}</div>
         </li>
         { user?.bio && <li class="text-left border-2 rounded-md p-2">
-            <div>Bio</div>
+            <div class="mb-4">Bio</div>
             <div>{user?.bio}</div>
         </li> }
         <li>
