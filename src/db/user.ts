@@ -44,7 +44,7 @@ export const createUser = async (session: Session) => {
 export const updateUser = async (id: string, user: Partial<UsersRecord>) => {
     const updatedUser = await xata.db.users.update(id, {
         username: user?.username,
-
+        bio: user?.bio
     })
-    return user
+    return updatedUser
 }

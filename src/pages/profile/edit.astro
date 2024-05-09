@@ -1,14 +1,13 @@
 ---
 import ProfileLayout from '../../layouts/profile.astro';
-import { getSession } from 'auth-astro/server';
-import { getUser, updateUser } from '../../db/user';
+import { GET } from '../api/user.json';
 
-const session = await getSession(Astro.request);
-const user = await getUser(session);
+const response = await GET(Astro);
+const user = await response.json()
 ---
 
 <ProfileLayout sectionTitle="Your info - Edit">
-    <form>
+    <form data-userid={user?.id}>
         <ul class="space-y-8 text-center">
             <li class="flex justify-center relative">
                 <img src={user?.image?.url}>
@@ -32,15 +31,19 @@ const user = await getUser(session);
         </ul>
     </form>
     <script>
-        document.querySelector('form')!.addEventListener('submit', async (e) => {
+        const form = document.querySelector('form')!;
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const userId = form.getAttribute('data-userid');
+            const username = (document.querySelector('#username') as HTMLInputElement)!.value;
+            const bio = (document.querySelector('#bio') as HTMLInputElement)!.value;
 
-            await fetch('/api/user/', {
+            await fetch('/api/user.json', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username: 'bla', bio: 'bla' })
+                body: JSON.stringify({ id: userId, username, bio })
             });
             window.location.href = '/profile/your-info';
         });
