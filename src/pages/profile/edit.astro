@@ -9,9 +9,9 @@ const user = await response.json()
 <ProfileLayout sectionTitle="Your info - Edit">
     <form data-userid={user?.id}>
         <ul class="space-y-8 text-center">
-            <li class="flex justify-center relative">
-                <img src={user?.image?.url}>
-                <div class="absolute bottom-0 bg-black w-full opacity-80">Change &#9998</div>
+            <li class="flex justify-center relative group">
+                <img class="cursor-pointer" src={user?.image?.url}>
+                <div id="change-image-container" class="hidden group-hover:block absolute bottom-0 bg-black w-full opacity-80">Change &#9998<input type="file" class="hidden" id="change-image" /></div>
             </li>
             <li class="flex justify-between border-2 rounded-md p-2 bg-gray-400">
                 <div>Email</div>
@@ -30,23 +30,6 @@ const user = await response.json()
             </li>
         </ul>
     </form>
-    <script>
-        const form = document.querySelector('form')!;
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const userId = form.getAttribute('data-userid');
-            const username = (document.querySelector('#username') as HTMLInputElement)!.value;
-            const bio = (document.querySelector('#bio') as HTMLInputElement)!.value;
-
-            await fetch('/api/user.json', {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ id: userId, username, bio })
-            });
-            window.location.href = '/profile/your-info';
-        });
-    </script>
+    <script src="./form-data.ts"></script>
 
 </ProfileLayout>

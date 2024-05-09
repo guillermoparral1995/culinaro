@@ -2,7 +2,6 @@ import { xata } from './client'
 import axios from 'axios'
 
 import type { Session } from '@auth/core/types'
-import type { UsersRecord } from '../xata'
 
 
 export const getUser = async (session: Session | null) => {
@@ -41,10 +40,17 @@ export const createUser = async (session: Session) => {
     return user
 }
 
-export const updateUser = async (id: string, user: Partial<UsersRecord>) => {
-    const updatedUser = await xata.db.users.update(id, {
-        username: user?.username,
-        bio: user?.bio
-    })
+export const updateUser = async (id: string, user: { username?: string, bio?: string, image?: File }) => {
+    let base64Img;
+    if (user?.image) {
+        const arraybuffer: ArrayBuffer = await user.image.arrayBuffer();
+        base64Img = Buffer.from(arraybuffer, 'binary').toString('base64');
+    }
+    const newRecord = {
+        ...(user?.username && { username: user.username }),
+        ...(user?.bio && { bio: user.bio }),
+        ...(base64Img && { image: { mediaType: 'image/png', base64Content: base64Img } })
+    }
+    const updatedUser = await xata.db.users.update(id, newRecord)
     return updatedUser
 }

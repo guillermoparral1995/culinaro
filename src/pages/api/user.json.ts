@@ -9,11 +9,25 @@ export const GET: APIRoute = async ({ request }) => {
 }
 
 export const PUT: APIRoute = async ({ request }) => {
-    const { id, username, bio } = await request.json()
-    const result = await updateUser(id, { username, bio })
-    return new Response(JSON.stringify({
-        message: "OK!",
-        record: result
-    })
-    )
+    try {
+        const data = await request.formData()
+        const id = (data.get('id') as string)
+        if (!id) {
+            throw new Error('User ID was not provided')
+        }
+        const username = data.get('username') as string | undefined
+        const bio = data.get('bio') as string | undefined
+        const image = data.get('image') as File | undefined
+        const result = await updateUser(id, { username, bio, image })
+        return new Response(JSON.stringify({
+            message: "OK!",
+            record: result
+        }))
+    } catch (e: unknown) {
+        return new Response(JSON.stringify({
+            message: 'Error updating user',
+            cause: (e as Error).message
+        }))
+    }
+
 }
