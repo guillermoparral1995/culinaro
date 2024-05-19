@@ -1,35 +1,12 @@
 ---
-import ProfileLayout from '../../layouts/profile.astro';
-import { GET } from '../api/user.json';
+import { Form } from '../../components/Form'
+import ProfileLayout from '../../layouts/profile.astro'
+import { GET } from '../api/user.json'
 
-const response = await GET(Astro);
+const response = await GET(Astro)
 const user = await response.json()
 ---
 
 <ProfileLayout sectionTitle="Your info - Edit">
-    <form data-userid={user?.id}>
-        <ul class="space-y-8 text-center">
-            <li class="flex justify-center relative group">
-                <img class="cursor-pointer" src={user?.image?.url}>
-                <div id="change-image-container" class="hidden group-hover:block absolute bottom-0 bg-black w-full opacity-80">Change &#9998<input type="file" class="hidden" id="change-image" /></div>
-            </li>
-            <li class="flex justify-between border-2 rounded-md p-2 bg-gray-400">
-                <div>Email</div>
-                <div class="font-bold">{user?.email}</div>
-            </li>
-            <li class="flex justify-between border-2 rounded-md p-2 cursor-pointer">
-                <label for="username">Username</label>
-                <input id="username" class="text-black rounded-md" placeholder={user?.username}/>
-            </li>
-            <li class="text-left border-2 rounded-md p-2 space-y-4 cursor-pointer">
-                <div class="mb-4">Bio</div>
-                <textarea id="bio" class="text-black rounded-md w-full h-16" placeholder={user?.bio ?? ''}/>
-            </li>
-            <li>
-                <input type="submit" class="rounded-md border-2 cursor-pointer p-2" value="Save changes"/>
-            </li>
-        </ul>
-    </form>
-    <script src="./form-data.ts"></script>
-
+    <Form user={user} client:load></Form>
 </ProfileLayout>

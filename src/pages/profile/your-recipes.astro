@@ -1,10 +1,5 @@
 ---
-import ProfileLayout from '../../layouts/profile.astro';
-import { getSession } from 'auth-astro/server';
-import { getUser } from '../../db/user';
-
-const session = await getSession(Astro.request);
-const user = await getUser(session);
+import ProfileLayout from '../../layouts/profile.astro'
 ---
 
 <ProfileLayout sectionTitle="Your recipes">

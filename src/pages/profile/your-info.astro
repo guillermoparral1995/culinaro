@@ -1,16 +1,16 @@
 ---
-import ProfileLayout from '../../layouts/profile.astro';
-import { getSession } from 'auth-astro/server';
-import { getUser } from '../../db/user';
+import ProfileLayout from '../../layouts/profile.astro'
+import { getSession } from 'auth-astro/server'
+import { getUser } from '../../db/user'
 
-const session = await getSession(Astro.request);
+const session = await getSession(Astro.request)
 const user = await getUser(session);
 ---
 
 <ProfileLayout sectionTitle="Your info">
     <ul class="space-y-8 text-center">
         <li class="flex justify-center">
-            <img src={user?.image?.url}>
+            <img class="w-40 object-cover" src={user?.image?.url}>
         </li>
         <li class="flex justify-between border-2 rounded-md p-2">
             <div>Email</div>
@@ -20,7 +20,7 @@ const user = await getUser(session);
             <div>Username</div>
             <div class="font-bold">{user?.username}</div>
         </li>
-        { user?.bio && <li class="text-left border-2 rounded-md p-2">
+        { user?.bio != null && <li class="text-left border-2 rounded-md p-2">
             <div class="mb-4">Bio</div>
             <div>{user?.bio}</div>
         </li> }
