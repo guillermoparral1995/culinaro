@@ -1,5 +1,5 @@
 ---
-import { Form } from '../../components/Form'
+import { ProfileForm } from '../../components/ProfileForm'
 import ProfileLayout from '../../layouts/profile.astro'
 import { GET } from '../api/user.json'
 
@@ -8,5 +8,5 @@ const user = await response.json()
 ---
 
 <ProfileLayout sectionTitle="Your info - Edit">
-    <Form user={user} client:load></Form>
+    <ProfileForm user={user} client:load></ProfileForm>
 </ProfileLayout>
